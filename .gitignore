@@ -1,0 +1,8 @@
+.env
+env/
+nohup.out
+music/
+.vscode/
+.DS_Store
+__pycache__/
+migrations/
