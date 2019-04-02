@@ -15,10 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include, re_path
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('', include('github.urls')),
+    path('', include('github.urls')),
     # path('', include('music.urls')),
-    re_path('api/(?P<version>(v1|v2))/', include('music.urls'))
-]
+    re_path('api/(?P<version>(v1|v2))/', include('music.urls')),
+    re_path('api/(?P<version>(v1|v2))/', include('github.urls')),
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -59,3 +59,9 @@ from github.models import *
 a = Githuber.objects.create(useracc="anh",username="Bao Anh",bio="Data Scientist",location="Paris")
 repo = Repository(repo_owner=a,repo="learing Python",used_lang="Python")
 ```
+
+> If you need to delete all tables in database to struggle with conflit migrations, launch SQL query below:
+```sql
+DROP SCHEMA public CASCADE;
+CREATE SCHEMA public;
+```

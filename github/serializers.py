@@ -6,6 +6,7 @@ class GithuberSerializer(serializers.ModelSerializer):
     owner_star = serializers.StringRelatedField(many=True)
     owner_follow = serializers.StringRelatedField(many=True)
     owner_followi = serializers.StringRelatedField(many=True)
+    
 
     class Meta:
         model = Githuber

@@ -6,3 +6,4 @@ music/
 .DS_Store
 __pycache__/
 migrations/
+db.sqlite3
