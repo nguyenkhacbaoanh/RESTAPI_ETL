@@ -29,7 +29,7 @@ class AutoScrapping:
    # la critère du scrapping
    key_search = ["repositories", "stars", "followers", "following"]
    def __init__(self,url_scrapped):
-      self.url_scrapped = url_scrapped
+      self.url_scrapped = "https://github.com/" + url_scrapped
 
    def infoPerso(self):
       # information hors de boucle
@@ -40,9 +40,16 @@ class AutoScrapping:
       #    img = soup.find("img", {"class":"avatar width-full rounded-2"}).attrs["src"]
       try:
          full_name = soup.find("span",{"class":"p-name vcard-fullname d-block overflow-hidden"}).text
+         if full_name == "":
+            full_name = "Unknown"
       except:
          full_name = "Unknown"
-      acc_name = soup.find("span",{"class":"p-nickname vcard-username d-block"}).text
+      
+      try:
+         acc_name = soup.find("span",{"class":"p-nickname vcard-username d-block"}).text
+      except:
+         acc_name = "Unknown"
+      
       try:
          bio = soup.find("div", {"class":"p-note user-profile-bio mb-3"}).find("div").text
       except:
@@ -55,8 +62,14 @@ class AutoScrapping:
       # print(acc_name)
       # print(bio)
       # print(location)
+      data = {
+         "useracc": acc_name,
+         "username": full_name,
+         "bio": bio,
+         "location": location
+      }
 
-      return acc_name, full_name, bio, location
+      return data
 
    def repoScrapping(self):
       # --------------------------------------
@@ -99,7 +112,13 @@ class AutoScrapping:
                      used_lang.append("Unknown")
       # print(repository)
       # print(used_lang)
-      return repository, used_lang
+      repo_owner = dict(self.infoPerso())["accname"]
+      data = {
+         "repo_owner": repo_owner,
+         "repo": repository,
+         "used_lang": used_lang
+      }
+      return data
 
    def starScrapping(self):
       # --------------------------------------
@@ -297,7 +316,7 @@ class AutoScrapping:
 
 if __name__ == "__main__":
    # url pour crapper
-   url_scrapped = "https://github.com/nguyenkhacbaoanh"
+   url_scrapped = "nguyenkhacbaoanh"
    cp = AutoScrapping(url_scrapped)
    # print(cp.infoPerso())
    # print(cp.repoScrapping())

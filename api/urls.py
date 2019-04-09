@@ -20,8 +20,8 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('github.urls')),
+    path('api/github/', include('github.api.urls')),
     # path('', include('music.urls')),
-    re_path('api/(?P<version>(v1|v2))/', include('music.urls')),
-    re_path('api/(?P<version>(v1|v2))/', include('github.urls')),
+    # re_path('api/(?P<version>(v1|v2))/', include('music.urls')),
+    # re_path('api/(?P<version>(v1|v2))/', include('github.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

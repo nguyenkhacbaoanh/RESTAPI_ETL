@@ -16,7 +16,7 @@ label {
   color:#555;
   font-family: 'Raleway', sans-serif;
 }
-input[type="email"] {
+#text {
   display:block;
   width:60%;
   font-size:18px;
@@ -33,7 +33,7 @@ input[type="email"] {
    background-position: 0 -60px;
 transition:all .6s ease;
 }
-input[type="email"]:focus {
+#text:focus {
   outline:none;
   background-position:0 0;
  }
